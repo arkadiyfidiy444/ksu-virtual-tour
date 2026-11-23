@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Херсонський державний університет — віртуальна 3D-екскурсія</title>
+  <meta name="description" content="Херсонський державний університет, заснований 1917 року. Інтерактивна 3D-прогулянка територією університету просто у браузері.">
+  <meta name="theme-color" content="#0b2a21">
+  <meta property="og:title" content="Херсонський державний університет — 3D-екскурсія">
+  <meta property="og:description" content="Пройдіться територією університету від першої особи: WASD, миша, біг і стрибок.">
+  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b2a21'/%3E%3Cpath d='M16 6 6 12v2h20v-2zM9 16v7h3v-7zm5.5 0v7h3v-7zM20 16v7h3v-7zM7 25h18v2H7z' fill='%23cfe9d8'/%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="assets/img/hero.jpg" media="(min-width: 761px)">
+  <link rel="preload" as="image" href="assets/img/hero-sm.jpg" media="(max-width: 760px)">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+  { "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти до змісту</a>
+
+  <header class="site-header" id="header">
+    <div class="wrap header-in">
+      <a class="brand" href="#top" aria-label="Херсонський державний університет — на початок">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor" opacity=".16"/><path d="M16 6 6 12v2h20v-2zM9 16v7h3v-7zm5.5 0v7h3v-7zM20 16v7h3v-7zM7 25h18v2H7z" fill="currentColor"/></svg>
+        <span class="brand-text"><b>Херсонський</b><span>державний університет</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основна навігація">
+        <a href="#about">Про університет</a>
+        <a href="#tour">Екскурсія</a>
+        <a href="#campus">Територія</a>
+        <a href="https://www.kspu.edu/" target="_blank" rel="noopener">Офіційний сайт ↗</a>
+      </nav>
+      <button class="btn btn-sm btn-light header-cta" data-start-tour>3D-екскурсія</button>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+      <div class="hero-bg" role="img" aria-label="Головний корпус університету, 3D-модель кампусу"></div>
+      <div class="hero-shade"></div>
+      <div class="wrap hero-in">
+        <p class="eyebrow reveal"><span class="dot"></span> Засновано 1917</p>
+        <h1 class="reveal d1">Херсонський<br>державний<br>університет</h1>
+        <p class="lead reveal d2">Понад століття безперервного розвитку. Пройдіться територією університету у віртуальній 3D-екскурсії — від першої особи, просто у браузері.</p>
+        <div class="hero-actions reveal d3">
+          <button class="btn btn-primary btn-lg" data-start-tour>Розпочати віртуальну екскурсію <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="btn btn-ghost btn-lg" href="#about">Про університет</a>
+        </div>
+      </div>
+      <ul class="hero-facts wrap reveal d4" aria-label="Коротко">
+        <li><b>1917</b><span>рік заснування</span></li>
+        <li><b>3D</b><span>модель території</span></li>
+        <li><b>WASD</b><span>керування як у грі</span></li>
+      </ul>
+      <a class="scroll-cue" href="#about" aria-label="Прокрутити вниз"><span></span></a>
+    </section>
+
+    <!-- ===== ПРО УНІВЕРСИТЕТ ===== -->
+    <section class="section section-light" id="about">
+      <div class="wrap about-grid">
+        <div class="about-text">
+          <p class="kicker reveal">Про університет</p>
+          <h2 class="reveal d1">Університет із понад столітньою історією</h2>
+          <p class="reveal d1">Херсонський державний університет заснований у <b>1917 році</b>. За відомостями з офіційного сайту, університет понад століття безперервно розвивається як освітній і науковий центр.</p>
+          <p class="reveal d2"><b>Освіта.</b> Університет здійснює підготовку здобувачів вищої освіти; діють аспірантура та докторантура.</p>
+          <p class="reveal d2"><b>Наука.</b> Наукова діяльність охоплює наукові лабораторії, наукові видання, конференції, спеціалізовані вчені ради, студентські олімпіади та конкурси студентських наукових робіт.</p>
+          <a class="link-arrow reveal d3" href="https://www.kspu.edu/" target="_blank" rel="noopener">Докладніше на офіційному сайті <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="facts">
+          <div class="fact fact-big reveal"><b>1917</b><span>рік заснування</span></div>
+          <div class="fact reveal d1"><b>100+</b><span>років безперервного розвитку</span></div>
+          <div class="fact reveal d2"><b><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg></b><span>аспірантура та докторантура</span></div>
+          <div class="fact fact-wide reveal d3"><b><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2.2h12.4A1.5 1.5 0 0 0 19.5 19L14 9V3"/><path d="M7.5 15h9"/></svg></b><span>наукові лабораторії, видання й конференції</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ВІРТУАЛЬНА ЕКСКУРСІЯ ===== -->
+    <section class="section section-dark" id="tour">
+      <div class="wrap tour-head">
+        <div>
+          <p class="kicker kicker-on-dark reveal">Віртуальна екскурсія</p>
+          <h2 class="reveal d1">Пройдіться кампусом самі</h2>
+        </div>
+        <ul class="keys reveal d2" aria-label="Керування">
+          <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>рух</span></li>
+          <li><kbd>Миша</kbd><span>огляд на 360°</span></li>
+          <li><kbd>Shift</kbd><span>біг</span></li>
+          <li><kbd>Space</kbd><span>стрибок</span></li>
+          <li><kbd>F</kbd><span>вільний огляд</span></li>
+        </ul>
+        <p class="touch-only">Лівий джойстик — рух, перетягування пальцем по сцені — огляд, кнопки «Біг» і «Стрибок».</p>
+      </div>
+
+      <div class="wrap-wide">
+        <div class="tour-stage" id="tour-stage" tabindex="-1">
+          <canvas id="view" aria-label="3D-модель кампусу"></canvas>
+
+          <!-- постер: показується, доки модель не завантажена -->
+          <div class="tour-poster" id="tour-poster">
+            <img src="assets/img/tour-poster.jpg" alt="" loading="lazy" decoding="async">
+            <div class="poster-in">
+              <h3>3D-прогулянка територією</h3>
+              <p>Будівлі, парк, фонтан, скульптура Афіни — з колізіями, як у грі.</p>
+              <button class="btn btn-primary btn-lg" id="poster-start" data-start-tour>Запустити екскурсію</button>
+              <div class="progress" id="progress" hidden><div id="progress-bar"></div></div>
+              <p class="poster-note" id="poster-note">Модель близько 40 МБ — завантажується один раз, лише після натискання.</p>
+              <p class="poster-error" id="poster-error" hidden></p>
+            </div>
+          </div>
+
+          <div id="ui" hidden>
+            <div id="modes">
+              <button id="mode-walk" class="on">🚶 Прогулянка</button>
+              <button id="mode-free">🕊 Вільний огляд</button>
+              <button id="fs-btn">⛶ Повний екран</button>
+            </div>
+            <div id="views">
+              <button data-view="main">Головний корпус</button>
+              <button data-view="athena">Афіна</button>
+              <button data-view="park">Парк</button>
+              <button data-view="dorm">Гуртожитки</button>
+              <button data-view="courts">Спортмайданчик</button>
+              <button data-view="aerial">Огляд зверху</button>
+              <button data-view="parkAerial">Парк зверху</button>
+              <button data-view="sport">Спорт зверху</button>
+            </div>
+            <details id="toggles">
+              <summary>⚙ Налаштування</summary>
+              <label><input type="checkbox" id="t-shadows"> Тіні</label>
+              <label><input type="checkbox" id="t-eco"> Економний режим</label>
+              <label><input type="checkbox" id="t-stats"> Показати FPS</label>
+            </details>
+            <pre id="stats" hidden></pre>
+            <div id="hint"></div>
+            <div id="crosshair" hidden></div>
+            <div id="lockhint" hidden><div>Клікніть, щоб керувати мишею<br><small>Esc — відпустити курсор</small></div></div>
+            <div id="touch" aria-hidden="true">
+              <div id="joy"><div id="joy-knob"></div></div>
+              <div class="touch-btns"><button id="btn-run">Біг</button><button id="btn-jump">Стрибок</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ТЕРИТОРІЯ ===== -->
+    <section class="section section-light" id="campus">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker reveal">Територія університету</p>
+          <h2 class="reveal d1">Куди зазирнути під час екскурсії</h2>
+          <p class="reveal d2 muted-lead">Кожна картка веде в 3D-модель: натисніть, і ви опинитесь на цьому місці.</p>
+        </div>
+        <div class="cards">
+          <article class="card card-lg reveal" data-view="main">
+            <div class="card-img"><img src="assets/img/main.jpg" alt="Головний корпус, вид зверху" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="tag">Головний корпус</span>
+              <h3>Головний корпус</h3>
+              <p>Протяжна багатоповерхова будівля з вежею-входом і написом «Херсонський державний університет» на фасаді — візуальна домінанта кампусу. У моделі можна підійти до сходів і оглянути фасад зі сторони вулиці.</p>
+              <button class="btn-link" data-go="main">Відкрити в 3D <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="card reveal d1" data-view="athena">
+            <div class="card-img"><img src="assets/img/athena.jpg" alt="Скульптура Афіни на площі перед будівлею" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="tag">Скульптура</span>
+              <h3>Афіна</h3>
+              <p>Статуя на квітнику посеред мощеної площі перед приймальною комісією — зручна відправна точка прогулянки.</p>
+              <button class="btn-link" data-go="athena">Відкрити в 3D <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="card reveal" data-view="park">
+            <div class="card-img"><img src="assets/img/park.jpg" alt="Алея парку, що веде до фонтана" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="tag">Парк</span>
+              <h3>Парк і фонтан</h3>
+              <p>Алеї з лавками, ліхтарями й квітниками ведуть до триярусного фонтана. Дерева й фонтан «тверді» — обійти їх можна лише по доріжках.</p>
+              <button class="btn-link" data-go="park">Відкрити в 3D <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="card reveal d1" data-view="dorm">
+            <div class="card-img"><img src="assets/img/dorm.jpg" alt="Гуртожитки вздовж вулиці" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="tag">Гуртожитки</span>
+              <h3>Гуртожитки</h3>
+              <p>Цегляні корпуси з балконами уздовж вулиці, за огорожею з ковкою — оглядайте їх із тротуару.</p>
+              <button class="btn-link" data-go="dorm">Відкрити в 3D <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="card reveal d2" data-view="courts">
+            <div class="card-img"><img src="assets/img/sport.jpg" alt="Спортивний майданчик і спортивний зал" loading="lazy" decoding="async"></div>
+            <div class="card-body">
+              <span class="tag">Спорт</span>
+              <h3>Спортивна зона</h3>
+              <p>Спортивний зал, огороджений майданчик із сіткою та цегляна доріжка до нього; поруч — паркування.</p>
+              <button class="btn-link" data-go="courts">Відкрити в 3D <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand brand-foot" href="#top">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor" opacity=".16"/><path d="M16 6 6 12v2h20v-2zM9 16v7h3v-7zm5.5 0v7h3v-7zM20 16v7h3v-7zM7 25h18v2H7z" fill="currentColor"/></svg>
+          <span class="brand-text"><b>Херсонський</b><span>державний університет</span></span>
+        </a>
+        <p class="foot-text">Проєкт віртуальної 3D-прогулянки територією університету. Модель створена в Blender та відображається у браузері на Three.js — без встановлення програм.</p>
+      </div>
+      <div>
+        <h4>Розділи</h4>
+        <ul><li><a href="#about">Про університет</a></li><li><a href="#tour">Віртуальна екскурсія</a></li><li><a href="#campus">Територія</a></li></ul>
+      </div>
+      <div>
+        <h4>Посилання</h4>
+        <ul><li><a href="https://www.kspu.edu/" target="_blank" rel="noopener">Офіційний сайт ХДУ ↗</a></li></ul>
+        <p class="foot-small">Відомості про університет подано за відкритими даними його офіційного сайту; актуальну інформацію шукайте там.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/site.js"></script>
+</body>
+</html>

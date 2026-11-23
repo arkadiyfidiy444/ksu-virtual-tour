@@ -1,0 +1,71 @@
+/* 3D-екскурсія: сцена, постер, інтерфейс поверх canvas */
+.tour-stage { position: relative; height: clamp(540px, 86vh, 920px); border-radius: 26px; overflow: hidden; background: #0a1f18; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 50px 90px -40px rgba(0,0,0,.7); outline: none; isolation: isolate; }
+.tour-stage canvas#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; cursor: crosshair; touch-action: none; }
+.tour-stage.is-fs, .tour-stage.is-fs-css { border-radius: 0; border: 0; }
+/* коли 3D запущено — без округленого обрізання та тіні: це зайві проходи композитора поверх WebGL */
+.tour-stage.live { border-radius: 0; box-shadow: none; }
+.tour-stage.is-fs { width: 100vw; height: 100vh; }
+.tour-stage.is-fs-css { position: fixed; inset: 0; z-index: 200; height: auto; }
+
+/* постер до запуску */
+.tour-poster { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; text-align: center; color: #fff; transition: opacity .6s, visibility .6s; }
+.tour-poster.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.tour-poster > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05); }
+.tour-poster::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, rgba(7,32,26,.55) 0%, rgba(7,32,26,.82) 100%); }
+.poster-in { position: relative; z-index: 2; padding: 24px; max-width: 560px; }
+.poster-in h3 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 12px; }
+.poster-in p { color: rgba(255,255,255,.86); margin-bottom: 26px; }
+.poster-in .poster-note { font-size: 13.5px; opacity: .7; margin: 18px 0 0; }
+.poster-error { margin-top: 14px; color: #ffd0c8; font-size: 14px; }
+.progress { height: 8px; border-radius: 6px; background: rgba(255,255,255,.2); overflow: hidden; margin: 6px auto 0; max-width: 360px; }
+#progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, #8fcaa9, #fff); border-radius: 6px; transition: width .15s; }
+.tour-poster.loading #poster-start { display: none; }
+
+/* інтерфейс поверх сцени */
+#ui { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+#ui[hidden] { display: none; }
+#ui > * { pointer-events: auto; }
+#ui button { font: 500 13.5px/1 var(--sans); color: #fff; background: rgba(8,30,23,.78); border: 1px solid rgba(255,255,255,.22); border-radius: 10px; padding: 9px 12px; cursor: pointer; transition: background .2s, border-color .2s; white-space: nowrap; }
+#ui button:hover { background: rgba(31,107,80,.85); border-color: var(--g-300); }
+#ui button.on { background: rgba(31,107,80,.9); border-color: var(--g-300); }
+#modes { position: absolute; top: 14px; left: 14px; display: flex; gap: 8px; flex-wrap: wrap; max-width: calc(100% - 190px); }
+#views { position: absolute; top: 58px; left: 14px; display: flex; flex-wrap: wrap; gap: 6px; max-width: min(900px, calc(100% - 28px)); }
+#views button { padding: 7px 10px; font-size: 13px; }
+#toggles { position: absolute; top: 14px; right: 14px; background: rgba(8,30,23,.78); border: 1px solid rgba(255,255,255,.22); border-radius: 10px; padding: 9px 12px; font-size: 13.5px; color: #fff; min-width: 120px; }
+#toggles summary { cursor: pointer; list-style: none; user-select: none; }
+#toggles summary::-webkit-details-marker { display: none; }
+#toggles label { display: flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer; user-select: none; }
+#stats { position: absolute; left: 14px; bottom: 44px; margin: 0; padding: 8px 10px; font: 12px/1.35 ui-monospace, Consolas, monospace; color: #fff; background: rgba(8,30,23,.7); border: 1px solid rgba(255,255,255,.2); border-radius: 8px; pointer-events: none; }
+#stats[hidden] { display: none; }
+#hint { position: absolute; left: 14px; bottom: 12px; max-width: calc(100% - 28px); font-size: 12.5px; color: rgba(255,255,255,.92); background: rgba(8,30,23,.72); padding: 6px 10px; border-radius: 8px; pointer-events: none; }
+#crosshair { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: 0 0 0 1px rgba(0,0,0,.45); pointer-events: none; }
+#lockhint { position: absolute; left: 50%; top: 64%; transform: translateX(-50%); padding: 12px 20px; background: rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.25); border-radius: 12px; text-align: center; font-size: 17px; color: #fff; pointer-events: none !important; }
+#lockhint small { opacity: .75; font-size: 12.5px; }
+#crosshair[hidden], #lockhint[hidden] { display: none; }
+
+/* дотикові елементи — лише на пристроях із «грубим» вказівником */
+#touch { display: none; }
+@media (pointer: coarse) {
+  #touch { display: block; position: absolute; inset: auto 0 0 0; height: 0; }
+  #joy { position: absolute; left: 22px; bottom: 34px; width: 132px; height: 132px; border-radius: 50%; background: rgba(8,30,23,.55); border: 2px solid rgba(255,255,255,.35); touch-action: none; }
+  #joy-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255,255,255,.55); box-shadow: 0 4px 14px rgba(0,0,0,.4); pointer-events: none; }
+  .touch-btns { position: absolute; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 12px; }
+  .touch-btns button { width: 84px; height: 58px; font-size: 15px !important; border-radius: 16px !important; touch-action: none; }
+  #hint, #lockhint { display: none; }
+  #mode-free { display: none; }
+  #views { top: 56px; }
+}
+@media (max-width: 760px) {
+  .tour-stage { height: clamp(480px, 78vh, 760px); border-radius: 18px; }
+  #views { flex-wrap: nowrap; overflow-x: auto; max-width: calc(100% - 28px); padding-bottom: 4px; scrollbar-width: none; }
+  #views::-webkit-scrollbar { display: none; }
+  #hint { display: none; }
+  #stats { bottom: 14px; }
+  #modes { max-width: calc(100% - 84px); }
+  #toggles { top: 14px; bottom: auto; right: 14px; min-width: 0; }
+  #toggles summary { font-size: 0; }
+  #toggles summary::before { content: '⚙'; font-size: 17px; line-height: 1; }
+  #toggles[open] summary { margin-bottom: 2px; }
+}
+
+.touch-only { display: none; }

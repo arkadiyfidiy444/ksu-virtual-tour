@@ -1,0 +1,24 @@
+# локальні/службові папки — не потрапляють у репозиторій
+_to_delete/
+_backup_before_perf/
+_site/
+models/backup/
+# вихідні файли Blender і важкі проміжні дані
+*.blend
+*.blend1
+*.fbx
+*.obj
+# результати тестів і кеш
+__pycache__/
+*.pyc
+tests/*.png
+tests/*.json
+node_modules/
+# секрети та системне сміття (на випадок випадкового потрапляння)
+.env
+.env.*
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+desktop.ini

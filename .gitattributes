@@ -1,0 +1,7 @@
+* text=auto
+# start.bat обов'язково з CRLF, інакше cmd.exe видає помилки
+*.bat text eol=crlf
+*.glb binary
+*.gz binary
+*.jpg binary
+*.png binary
